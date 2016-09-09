@@ -1,0 +1,9 @@
+﻿@model List<DB.SiteMenu>
+
+@foreach(var menu in Model) {
+	if(HttpContext.Current.Request.Path == menu.Url) {
+	<text><li id="MenuItemActive"><a href="@menu.Url">@menu.Title</a></li></text>
+	} else {
+	<text><li><a href="@menu.Url">@menu.Title</a></li></text>
+	}
+}

@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<title>@ViewBag.Title</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/main.css")" />
+	<script type="text/javascript" src="@Url.Content("~/Scripts/main.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/responsiveslides.min.js")"></script>
+	<link rel="icon" type="image/png" href="@Url.Content("~/Content/Images/16x16.png")" />
+	<script>
+		
+	</script>
+</head>
+<body>
+	<div id="BodyWrapper">
+		<div id="Header">
+			<div id="HeaderLogo">
+				<a href="/">
+					<img src="@Url.Content("~/Content/Images/logo.png")" /></a>
+			</div>
+			<div id="LanguageBar">
+				@Html.Action("RederLanguageBar", "Language")
+			</div>
+
+		</div>
+		<div id="Menu">
+			<ul>
+				@Html.Action("RenderMenuBar", "Menu")
+			</ul>
+		</div>
+		<div id="SubMenu">
+			<div id="SubMenuSpinner">
+			</div>
+		</div>
+		@if(ViewBag.IsSliderVisible != null && ViewBag.IsSliderVisible) {
+			<div id="Slider">
+				<ul class="Slides" id="SlideShow">
+					@Html.Action("RenderSlider", "Slider")
+				</ul>
+			</div>
+			<div id="SliderPanel">
+				<div id="SliderSpinner"></div>
+				<ul></ul>
+			</div>
+  }
+		@RenderBody()
+		<div id="Footer">
+			<hr />
+			Email: contact@cms-g.com<br />
+			<a style="color: #ff3c00;" href="/">CMS Group 2013 ©</a>
+		</div>
+		<div id="SocialBar">
+			<a href="http://www.facebook.com/CMSGroupCom" target="_blank">
+				<img src="@Url.Content("~/Content/Images/facebook.png")" /></a>
+			<a href="http://twitter.com/CMSGroupCom" target="_blank">
+				<img src="@Url.Content("~/Content/Images/twitter.png")" /></a>
+			<a href="http://vk.com/cmsgroupcom" target="_blank">
+				<img src="@Url.Content("~/Content/Images/vkontakte.png")" /></a>
+		</div>
+	</div>
+</body>
+</html>

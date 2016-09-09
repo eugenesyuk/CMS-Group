@@ -1,0 +1,18 @@
+﻿@model List<DB.BlogPost>
+
+@{
+	ViewBag.Title = "CMS Group";
+	ViewBag.IsSliderVisible = true;
+}
+
+@foreach(var post in Model) {
+	<div class="BlogPost">
+		<div class="BlogPostTitle">
+			<h1>@post.Title</h1>
+		</div>
+		<div class="BlogPanel">
+			<p>@Web.Properties.Resources.Posted: @post.Date.ToLongDateString()</p>
+			<div class="BlogPostContent">@Html.Raw(post.Content)</div>
+		</div>
+	</div>
+}

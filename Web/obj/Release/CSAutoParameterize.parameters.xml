@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DbModelContainer-Web.config Connection String" description="DbModelContainer Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/DbModel.csdl|res://*/DbModel.ssdl|res://*/DbModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=tcp:m062z4q94m.database.windows.net,1433;Initial Catalog=cmgroupwebsitedb;User Id=coirius;Password=#nlarg3y0urp3nc1l;integrated security=false;multipleactiveresultsets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\CMS\\CMS\ Group\ Website\\Web\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DbModelContainer']/@connectionString" />
+  </parameter>
+</parameters>

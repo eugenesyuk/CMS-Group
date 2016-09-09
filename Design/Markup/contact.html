@@ -1,0 +1,108 @@
+﻿<html>
+<head>
+	<title>CMS Group | Contact </title>
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="main.css" />
+	<script type="text/javascript" src="main.js"></script>
+</head>
+<body>
+	<div id="BodyWrapper">
+		<div id="Header">
+			<div id="HeaderLogo">
+				<a href="/">
+					<img src="img/logo.png" /></a>
+			</div>
+			<div id="HeaderRightPanel">
+				<div id="LanguageBar">
+					<a href="#">
+						<img src="img/usa.png" /></a>
+					<a href="#">
+						<img src="img/ua.png" /></a>
+					<a href="#">
+						<img src="img/pl.png" /></a>
+				</div>
+			</div>
+		</div>
+		<div id="Menu">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="products.html">Products</a></li>
+				<li><a href="services.html">Services</a></li>
+				<li><a href="careers.html">Careers</a></li>
+				<li><a href="aboutus.html">About us</a></li>
+				<li id="MenuItemActive"><a href="#">Contact</a></li>
+			</ul>
+		</div>
+		<div id="SubMenu">
+			<div id="SubMenuSpinner">
+			</div>
+		</div>
+		<div id="Contact">
+			<form id="ContactForm" action="#" method="post">
+				<p><b>Your name:</b></p>
+				<input type="text" name="Name" size="30" />
+				<p><b>Your email:</b></p>
+				<input type="email" name="Email" size="30" />
+				<p><b>Your massage:</b></p>
+				<textarea name="Message" rows="10" cols="50"></textarea>
+				<br />
+				<input id="ContactFromSubmit" type="button" value="Send message" />
+				<div id="Status"></div>
+			</form>
+			<div id="ContactPageInformation">
+				<b>CMS Group</b><br />
+				<br />
+				ul. Broniewskiego 1<br />
+				35-506,Rzeszów<br />
+				<br />
+				<b>Phone:</b><br />
+				<br />
+				<b>Vladyslav Chyzhevskyi, Team leader:</b><br />
+				+48 512 852 088<br />
+				<br />
+				<b>Eugene Syrotiuk, Senior developer:</b><br />
+				+48 889 634 567<br />
+				<br />
+				<b>Yuriy Motokh, Junoir developer:</b><br />
+				+48 530 546 163
+				
+			</div>
+		</div>
+		<script type="text/javascript">
+			var isEmailValid = false;
+			$("input[type=email]").keyup(function() {
+				isEmailValid = new RegExp('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+$').test($(this).val());
+			});
+			$("#ContactFromSubmit").click(function() {
+				if(isEmailValid) {
+					$("#Status").fadeOut();
+					$.ajax({
+						url: '/Contact/Send',
+						type: "POST",
+						data: {
+							name: $("input[name=Name]").val(),
+							email: $("input[name=Email]").val(),
+							message: $("textarea[name=Message]").val()
+						},
+						success: function(data) {
+							if(data) $("#Status").html('Повідомлення надіслано. Ми звяжимось з вами згодом.');
+							else $("#Status").html('Сталась прикра помилка. Спробуйте будь ласка ще раз.');
+							$("#Status").fadeIn();
+						}
+					});
+				}
+				else {
+					$("#Status").html('Введена поштова адреса не є вірною.');
+					$("#Status").fadeIn();
+				}
+			});
+		</script>
+		<div id="Footer">
+			<hr style="margin-bottom: 20px; margin-top: 20px;" />
+			Email: contact@cs-g.com<br />
+			Tel:+4889634567<br />
+			<a style="color: #ff3c00;" href="#">CMS Group 2013 ©</a>
+		</div>
+	</div>
+</body>
+</html>

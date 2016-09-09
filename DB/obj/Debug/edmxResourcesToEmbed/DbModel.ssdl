@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DbModelStoreContainer">
+    <EntitySet Name="Users" EntityType="DbModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Languages" EntityType="DbModel.Store.Languages" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BlogPosts" EntityType="DbModel.Store.BlogPosts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BlogComments" EntityType="DbModel.Store.BlogComments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SiteMenus" EntityType="DbModel.Store.SiteMenus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SIteSliders" EntityType="DbModel.Store.SIteSliders" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pages" EntityType="DbModel.Store.Pages" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_BlogPostAuthor" Association="DbModel.Store.FK_BlogPostAuthor">
+      <End Role="BlogPost" EntitySet="BlogPosts" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="BlogPostLanguage" Association="DbModel.Store.BlogPostLanguage">
+      <End Role="BlogPost" EntitySet="BlogPosts" />
+      <End Role="Language" EntitySet="Languages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BlogPostComments" Association="DbModel.Store.FK_BlogPostComments">
+      <End Role="BlogComment" EntitySet="BlogComments" />
+      <End Role="BlogPost" EntitySet="BlogPosts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BlogPostCommentAuthor" Association="DbModel.Store.FK_BlogPostCommentAuthor">
+      <End Role="BlogComment" EntitySet="BlogComments" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiteMenuLanguage" Association="DbModel.Store.FK_SiteMenuLanguage">
+      <End Role="SiteMenu" EntitySet="SiteMenus" />
+      <End Role="Language" EntitySet="Languages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiteSliderLanguage" Association="DbModel.Store.FK_SiteSliderLanguage">
+      <End Role="SIteSlider" EntitySet="SIteSliders" />
+      <End Role="Language" EntitySet="Languages" />
+    </AssociationSet>
+    <AssociationSet Name="SiteMenuSiteMenu" Association="DbModel.Store.SiteMenuSiteMenu">
+      <End Role="SiteMenu" EntitySet="SiteMenus" />
+      <End Role="SiteMenu1" EntitySet="SiteMenus" />
+    </AssociationSet>
+    <AssociationSet Name="PageLanguage" Association="DbModel.Store.PageLanguage">
+      <End Role="Page" EntitySet="Pages" />
+      <End Role="Language" EntitySet="Languages" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Languages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="IconUrl" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BlogPosts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Author" Type="int" Nullable="false" />
+    <Property Name="Language" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BlogComments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PostId" Type="int" Nullable="false" />
+    <Property Name="Author" Type="int" Nullable="true" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SiteMenus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Parent" Type="int" Nullable="true" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Language" Type="int" Nullable="false" />
+    <Property Name="Order" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SIteSliders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ImageUrl" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Order" Type="smallint" Nullable="false" />
+    <Property Name="Language" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Language" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_BlogPostAuthor">
+    <End Role="BlogPost" Type="DbModel.Store.BlogPosts" Multiplicity="*" />
+    <End Role="User" Type="DbModel.Store.Users" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BlogPost">
+        <PropertyRef Name="Author" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BlogPostLanguage">
+    <End Role="BlogPost" Type="DbModel.Store.BlogPosts" Multiplicity="*" />
+    <End Role="Language" Type="DbModel.Store.Languages" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BlogPost">
+        <PropertyRef Name="Language" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BlogPostComments">
+    <End Role="BlogComment" Type="DbModel.Store.BlogComments" Multiplicity="*" />
+    <End Role="BlogPost" Type="DbModel.Store.BlogPosts" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="BlogPost">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BlogComment">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BlogPostCommentAuthor">
+    <End Role="BlogComment" Type="DbModel.Store.BlogComments" Multiplicity="*" />
+    <End Role="User" Type="DbModel.Store.Users" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BlogComment">
+        <PropertyRef Name="Author" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiteMenuLanguage">
+    <End Role="SiteMenu" Type="DbModel.Store.SiteMenus" Multiplicity="*" />
+    <End Role="Language" Type="DbModel.Store.Languages" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SiteMenu">
+        <PropertyRef Name="Language" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiteSliderLanguage">
+    <End Role="SIteSlider" Type="DbModel.Store.SIteSliders" Multiplicity="*" />
+    <End Role="Language" Type="DbModel.Store.Languages" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SIteSlider">
+        <PropertyRef Name="Language" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SiteMenuSiteMenu">
+    <End Role="SiteMenu" Type="DbModel.Store.SiteMenus" Multiplicity="0..1" />
+    <End Role="SiteMenu1" Type="DbModel.Store.SiteMenus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SiteMenu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SiteMenu1">
+        <PropertyRef Name="Parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PageLanguage">
+    <End Role="Page" Type="DbModel.Store.Pages" Multiplicity="*" />
+    <End Role="Language" Type="DbModel.Store.Languages" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Page">
+        <PropertyRef Name="Language" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

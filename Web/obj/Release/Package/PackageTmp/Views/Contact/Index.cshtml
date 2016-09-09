@@ -1,0 +1,36 @@
+﻿@{
+	ViewBag.Title = "Contact";
+}
+<div>
+	<form id="ContactForm" action="#" method="post">
+		<p>Your name:</p>
+		<input type="text" name="Name" size="30" />
+		<p>Your email:</p>
+		<input type="email" name="Email" size="30" />
+		<p>Your massage:</p>
+		<textarea name="Message" rows="10" cols="50"></textarea>
+		<br />
+		<input id="ContactFromSubmit" type="button" value="Send message" />
+	</form>
+	<div id="ContactPageInformation">
+		CMS Group Sp. z o.o.<br />
+		ul. Hetmańska 1, Rzeszów<br />
+		+48 512 852 088
+	</div>
+	<script type="text/javascript">
+		$("#ContactFromSubmit").click(function() {
+			$.ajax({
+				url: '@Url.Action("Send", "Contact")',
+				type: "POST",
+				data: {
+					name: $("input[name=Name]").val(),
+					email: $("input[name=Email]").val(),
+					message: $("textarea[name=Message]").val()
+				},
+				sucess: function(data) {
+					$("#ContactPageInformation").html(data);
+				}
+			});
+		});
+	</script>
+</div>

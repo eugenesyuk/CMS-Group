@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CMS Group | Home</title>
+	<script type="text/javascript" src="res/jquery-1.9.1.js"></script>
+	<link rel="stylesheet" type="text/css" href="main.css" />
+	<script type="text/javascript" src="main.js"></script>
+	<script type="text/javascript" src="coin-slider.js"></script>
+</head>
+<body>
+	<div id="BodyWrapper">
+		<div id="Header">
+			<div id="HeaderLogo">
+				<a href="/">
+					<img src="img/logo.png" /></a>
+			</div>
+			<div id="HeaderRightPanel">
+				<div id="LanguageBar">
+					<a href="#">
+						<img src="img/usa.png" /></a>
+					<a href="#">
+						<img src="img/ua.png" /></a>
+					<a href="#">
+						<img src="img/pl.png" /></a>
+				</div>
+			</div>
+		</div>
+		<div id="Menu">
+			<ul>
+				<li id="MenuItemActive"><a href="#">Home</a></li>
+				<li><a href="products.html">Products</a></li>
+				<li><a href="services.html">Services</a></li>
+				<li><a href="careers.html">Careers</a></li>
+				<li><a href="aboutus.html">About us</a></li>
+				<li><a href="contact.html">Contact</a></li>
+			</ul>
+		</div>
+		<div id="SubMenu">
+			<div id="SubMenuSpinner"></div>
+		</div>
+		<div id="Content">
+			<div id="Slider">
+				<img src="img/slider_1.jpg" />
+				<img src="img/slider_2.png" />
+				<img src="img/slider_3.png" />
+			</div>
+			<div id="SliderPanel">
+				<div id="SliderSpinner"></div>
+				<ul></ul>
+			</div>
+			<script type="text/javascript">
+				$('#Slider').coinslider();
+			</script>
+			<div class="BlogPost">
+				<div class="BlogPostTitle">
+					<h1>Lorem Ipsum</h1>
+				</div>
+				<div class="BlogPanel">
+					<p>Posted: Monday, May 13,2013</p>
+					<div class="BlogSharePanel">
+						<a class="BlogShareButton" id="BlogShareButtonTweet" href="#">tweet</a>
+						<a class="BlogShareButton" id="BlogShareButtonFacebook" href="#">like it</a>
+						<a class="BlogShareButton" id="BlogShareButtonVK" href="#">like</a>
+					</div>
+					<div class="BlogPostContent">
+						<img src="img/office.png" style="width:775px;"/>
+					</div>
+				</div>
+				<hr style="margin-bottom: 20px; margin-top: 20px;" />
+				<div id="Footer">
+					Email: contact@cs-g.com<br />
+					Tel:+4889634567<br />
+					<a style="color: #ff3c00;" href="#">CMS Group 2013 ©</a>
+				</div>
+				<div id="SocialBar">
+					<div>
+						<a href="#">
+							<img src="img/facebook.png" /></a>
+					</div>
+					<div>
+						<a href="#">
+							<img src="img/twitter.png" /></a>
+					</div>
+					<div>
+						<a href="#">
+							<img src="img/vkontakte.png" /></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

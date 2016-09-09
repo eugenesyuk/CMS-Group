@@ -1,0 +1,8 @@
+﻿@model List<DB.Language>
+
+@foreach(var lang in @Model) {
+	<a href="@Url.Action("Change", "Language", new {
+		 code = lang.Code
+	 })">
+		<img src="@Url.Content(lang.IconUrl)" /></a>
+}
